@@ -1,31 +1,31 @@
-version:  2.1
+version: 2.1
 
+# Define the jobs we want to run for this project
 jobs:
-  jobOne:
-    docker: 
-      - image: circleci/node:13.8.0
+  build:
+    docker:
+      - image: cimg/<language>:<version TAG>
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      run:  echo "done"
-      
-  jobTwo:
-    docker: 
-      - image: circleci/node:13.8.0
+      - checkout
+      - run: echo "this is the build job"
+  test:
+    docker:
+      - image: cimg/<language>:<version TAG>
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      run:  return 1
-        
-  jobThree:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
-      run:  return 1
-        
-        
-        
+      - checkout
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
 workflows:
-  Build:
+  build_and_test:
     jobs:
-      - jobOne
-      - jobTwo
-  Test:
-    jobs:
-      - jobThree
+      - build
+      - test:
+          requires:
+            - build
