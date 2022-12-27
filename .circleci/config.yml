@@ -2,13 +2,11 @@ version:  2.1
 
 jobs:
   jobOne:
-    environment:
-      test: "done"
     docker: 
       - image: circleci/node:13.8.0
     steps:
       run:
-        echo $test
+        echo "done"
       
   jobTwo:
     docker: 
