@@ -10,11 +10,12 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo Pipeline ID: << pipeline.id >>
-      - run: echo Pipeline #: << pipeline.number >>
-      - run: echo Pipeline GH URL: << pipeline.project.git_urlr >>
-      - run: echo Pipeline Proj Type: << pipeline.project.type >>
-      - run: echo Pipeline GH Branch: << pipeline.git.branch >>
+      run: |
+        echo Pipeline ID: << pipeline.id >>
+        echo Pipeline #: << pipeline.number >>
+        echo Pipeline GH URL: << pipeline.project.git_urlr >>
+        echo Pipeline Proj Type: << pipeline.project.type >>
+        echo Pipeline GH Branch: << pipeline.git.branch >>
   print_world:
     docker:
       - image: circleci/node:13.8.0
