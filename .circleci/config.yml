@@ -12,7 +12,7 @@ jobs:
     steps:
       - run: echo Pipeline ID << pipeline.id >>
       - run: echo Pipeline Num << pipeline.number >>
-      - run: echo Pipeline GH URL << pipeline.project.git_urlr >>
+      - run: echo Pipeline GH URL << pipeline.project.git_url >>
       - run: echo Pipeline Proj Type << pipeline.project.type >>
       - run: echo Pipeline GH Branch << pipeline.git.branch >>
   print_world:
