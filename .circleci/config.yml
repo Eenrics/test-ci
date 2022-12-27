@@ -1,0 +1,36 @@
+version:  2.1
+
+jobs:
+  jobOne:
+    environment:
+      test: "done"
+    docker: 
+      - image: circleci/node:13.8.0
+    steps:
+      run:
+        echo $test
+      
+  jobTwo:
+    docker: 
+      - image: circleci/node:13.8.0
+    steps:
+      run:
+        return 1
+        
+  jobThree:
+    docker: 
+      - image: circleci/node:13.8.0
+    steps:
+      run:
+        return 1
+        
+        
+        
+workflows:
+  Build:
+    jobs:
+      - jobOne
+      - jobTwo
+  Test:
+    jobs:
+      - jobThree
