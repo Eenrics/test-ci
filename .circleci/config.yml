@@ -5,22 +5,19 @@ jobs:
     docker: 
       - image: circleci/node:13.8.0
     steps:
-      run:
-        echo "done"
+      run:  echo "done"
       
   jobTwo:
     docker: 
       - image: circleci/node:13.8.0
     steps:
-      run:
-        return 1
+      run:  return 1
         
   jobThree:
     docker: 
       - image: circleci/node:13.8.0
     steps:
-      run:
-        return 1
+      run:  return 1
         
         
         
