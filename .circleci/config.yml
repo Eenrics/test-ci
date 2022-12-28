@@ -7,11 +7,14 @@ workflows:
       - test:
           requires:
             - build
+            
+defaults:  &defaults
+  docker:
+      - image: cimg/base:2020.01
 
 jobs:
   build:
-    docker:
-      - image: cimg/base:2020.01
+    <<: *defaults
     steps:
       - checkout
       - run:  echo "test 101" > File.txt
@@ -29,8 +32,7 @@ jobs:
           paths:
             - file.md
   test:
-    docker:
-      - image: cimg/base:2020.01
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
