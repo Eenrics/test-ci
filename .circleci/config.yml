@@ -12,10 +12,11 @@ jobs:
       - image: cimg/base:2020.01
     steps:
       - checkout
+      - run:  echo "test 101" > File.txt
       - save_cache:
           key: v1-my-project-{{ checksum "project.clj" }}
           paths:
-            - ~/README.md
+            - ~/File.txt
       - run:
           name: "echo an env var that is part of our project"
           command: |
@@ -33,4 +34,5 @@ jobs:
           name: "echo an env var that is part of our project"
           command: |
             echo $MY_ENV_VAR
-            cat README.md
+            chmod u+x test.sh
+            ./test.sh
