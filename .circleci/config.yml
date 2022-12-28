@@ -60,4 +60,4 @@ jobs:
     <<: *defaults
     steps:
       - print_pipeline_id
-          id: <<pipeline.id >>
+          id: << pipeline.id >>
