@@ -16,6 +16,7 @@ workflows:
       - test:
           requires:
             - build
+      - analyse
             
 defaults:  &defaults
   docker:
