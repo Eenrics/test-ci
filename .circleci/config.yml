@@ -4,6 +4,7 @@ workflows:
   test-env-vars:
     jobs:
       - build
+      - test
 
 jobs:
   build:
@@ -11,6 +12,23 @@ jobs:
       - image: cimg/base:2020.01
     steps:
       - checkout
+      - save_cache:
+          key: v1-my-project-{{ checksum "project.clj" }}
+          paths:
+            - ~/README.md
+      - run:
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $MY_ENV_VAR
+  test:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-my-project-{{ checksum "project.clj" }}
+            - v1-my-project-
       - run:
           name: "echo an env var that is part of our project"
           command: |
