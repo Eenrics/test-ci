@@ -24,7 +24,7 @@ jobs:
           command: |
             echo $MY_ENV_VAR > file.md
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /
           paths:
             - file.md
   test:
@@ -42,5 +42,5 @@ jobs:
             chmod u+x test.sh
             ./test.sh
       - attach_workspace:
-          at: /tmp/workspace
+          at: /
       - run: echo file.md
