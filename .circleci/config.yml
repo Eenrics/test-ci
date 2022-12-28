@@ -62,3 +62,7 @@ jobs:
     steps:
       - print_pipeline_id:
           id: << pipeline.id >>
+      - run:
+      name: Failed Tests
+      command: echo "Test Filed"
+      when: on_fail
