@@ -44,4 +44,4 @@ jobs:
             ./test.sh
       - attach_workspace:
           at: testFold/
-      - run: echo file.md
+      - run: echo testFold/file.md
