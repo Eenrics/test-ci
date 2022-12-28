@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:  echo "test 101" > File.txt
       - save_cache:
-          key: v1-my-project-{{ checksum "File.txt" }}
+          key: v1-my-project-{{ epoch }}
           paths:
             - "File.txt"
       - run:
@@ -30,7 +30,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-my-project-{{ checksum "File.txt" }}
+            - v1-my-project-{{ epoch }}
       - run:
           name: "echo an env var that is part of our project"
           command: |
