@@ -7,7 +7,7 @@ then
 
 # if file exist the it will be printed 
 echo "File is exist"
-return 0
+cat "File.txt
 else
 
 # is it is not exist then it will be printed
