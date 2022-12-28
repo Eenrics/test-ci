@@ -22,7 +22,11 @@ jobs:
       - run:
           name: "echo an env var that is part of our project"
           command: |
-            echo $MY_ENV_VAR
+            echo $MY_ENV_VAR > file.md
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - ~/file.md
   test:
     docker:
       - image: cimg/base:2020.01
@@ -37,3 +41,6 @@ jobs:
             echo $MY_ENV_VAR
             chmod u+x test.sh
             ./test.sh
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo file.md
