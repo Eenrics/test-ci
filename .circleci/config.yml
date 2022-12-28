@@ -4,8 +4,9 @@ workflows:
   test-env-vars:
     jobs:
       - build
-      - test
-          requires: [build]
+      - test:
+          requires:
+            - build
 
 jobs:
   build:
