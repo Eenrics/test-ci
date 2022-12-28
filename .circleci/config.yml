@@ -22,9 +22,10 @@ jobs:
       - run:
           name: "echo an env var that is part of our project"
           command: |
-            echo $MY_ENV_VAR > file.md
+            mkdir testFold/
+            echo $MY_ENV_VAR > testFold/file.md
       - persist_to_workspace:
-          root: /
+          root: testFold/
           paths:
             - file.md
   test:
@@ -42,5 +43,5 @@ jobs:
             chmod u+x test.sh
             ./test.sh
       - attach_workspace:
-          at: /
+          at: testFold/
       - run: echo file.md
