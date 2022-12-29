@@ -17,7 +17,7 @@ workflows:
           requires:
             - build
       - analyse
-      - create_infrastructure
+
             
 defaults:  &defaults
   docker:
@@ -38,6 +38,7 @@ jobs:
           command: |
             mkdir testFold/
             echo $MY_ENV_VAR > testFold/file.md
+      - run: echo ${CIRCLE_WORKFLOW_ID}
       - persist_to_workspace:
           root: testFold/
           paths:
@@ -55,6 +56,7 @@ jobs:
             echo $MY_ENV_VAR
             chmod u+x test.sh
             ./test.sh
+      - run: echo ${CIRCLE_WORKFLOW_ID}
       - attach_workspace:
           at: testFold/
       - run: ls && ls testFold/
@@ -63,6 +65,7 @@ jobs:
     steps:
       - print_pipeline_id:
           id: << pipeline.id >>
+      - run: echo ${CIRCLE_WORKFLOW_ID}
       - run:
           name: Failed Tests
           command: echo "Test Filed"
